@@ -139,7 +139,7 @@ function interface_files_field_default_field_instances() {
     'bundle' => 'interface_files',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '<strong>Assign the appropriate category here before uploading the file so the file is placed in the proper directory.</strong>',
+    'description' => '<strong>Assign the appropriate option here before uploading the file so the file is placed in the proper directory.</strong>',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -157,7 +157,7 @@ function interface_files_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_int_level1',
-    'label' => 'Level 1 Category',
+    'label' => 'Domain',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -194,7 +194,7 @@ function interface_files_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_int_level2',
-    'label' => 'Level 2 Category',
+    'label' => 'Type',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -231,7 +231,7 @@ function interface_files_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_int_level3',
-    'label' => 'Level 3 Category',
+    'label' => 'Category',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -308,13 +308,13 @@ function interface_files_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('<strong>Assign the appropriate category here before uploading the file so the file is placed in the proper directory.</strong>');
+  t('<strong>Assign the appropriate option here before uploading the file so the file is placed in the proper directory.</strong>');
+  t('Category');
   t('Description');
+  t('Domain');
   t('File');
   t('Last Updated');
-  t('Level 1 Category');
-  t('Level 2 Category');
-  t('Level 3 Category');
+  t('Type');
   t('Upload the file here.');
   t('When was this file last updated');
 

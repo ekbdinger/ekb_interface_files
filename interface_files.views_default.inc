@@ -27,6 +27,7 @@ function interface_files_views_default_views() {
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     3 => '3',
+    5 => '5',
     52 => '52',
   );
   $handler->display->display_options['cache']['type'] = 'none';
@@ -47,20 +48,18 @@ function interface_files_views_default_views() {
   $handler->display->display_options['fields']['field_interface_file']['table'] = 'field_data_field_interface_file';
   $handler->display->display_options['fields']['field_interface_file']['field'] = 'field_interface_file';
   $handler->display->display_options['fields']['field_interface_file']['click_sort_column'] = 'fid';
-  /* Field: Content: Level 1 Category */
+  /* Field: Content: Domain */
   $handler->display->display_options['fields']['field_int_level1']['id'] = 'field_int_level1';
   $handler->display->display_options['fields']['field_int_level1']['table'] = 'field_data_field_int_level1';
   $handler->display->display_options['fields']['field_int_level1']['field'] = 'field_int_level1';
-  /* Field: Content: Level 2 Category */
+  /* Field: Content: Type */
   $handler->display->display_options['fields']['field_int_level2']['id'] = 'field_int_level2';
   $handler->display->display_options['fields']['field_int_level2']['table'] = 'field_data_field_int_level2';
   $handler->display->display_options['fields']['field_int_level2']['field'] = 'field_int_level2';
-  $handler->display->display_options['fields']['field_int_level2']['label'] = 'Level 2';
-  /* Field: Content: Level 3 Category */
+  /* Field: Content: Category */
   $handler->display->display_options['fields']['field_int_level3']['id'] = 'field_int_level3';
   $handler->display->display_options['fields']['field_int_level3']['table'] = 'field_data_field_int_level3';
   $handler->display->display_options['fields']['field_int_level3']['field'] = 'field_int_level3';
-  $handler->display->display_options['fields']['field_int_level3']['label'] = 'Level 3';
   /* Field: Content: Description */
   $handler->display->display_options['fields']['field_doc_description']['id'] = 'field_doc_description';
   $handler->display->display_options['fields']['field_doc_description']['table'] = 'field_data_field_doc_description';
@@ -70,24 +69,18 @@ function interface_files_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Search: Search Terms */
-  $handler->display->display_options['filters']['keys']['id'] = 'keys';
-  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
-  $handler->display->display_options['filters']['keys']['field'] = 'keys';
-  $handler->display->display_options['filters']['keys']['group'] = 1;
-  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['keys']['expose']['operator_id'] = 'keys_op';
-  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search';
-  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
-  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
-  $handler->display->display_options['filters']['keys']['expose']['remember_roles'] = array(
+  /* Filter criterion: Global: Combine fields filter */
+  $handler->display->display_options['filters']['combine']['id'] = 'combine';
+  $handler->display->display_options['filters']['combine']['table'] = 'views';
+  $handler->display->display_options['filters']['combine']['field'] = 'combine';
+  $handler->display->display_options['filters']['combine']['operator'] = 'contains';
+  $handler->display->display_options['filters']['combine']['group'] = 1;
+  $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
+  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search Title or Description';
+  $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
+  $handler->display->display_options['filters']['combine']['expose']['identifier'] = 'combine';
+  $handler->display->display_options['filters']['combine']['expose']['remember_roles'] = array(
     2 => '2',
     3 => 0,
     1 => 0,
@@ -139,7 +132,19 @@ function interface_files_views_default_views() {
     52 => 0,
     53 => 0,
     54 => 0,
+    55 => 0,
   );
+  $handler->display->display_options['filters']['combine']['fields'] = array(
+    'title' => 'title',
+    'field_doc_description' => 'field_doc_description',
+  );
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -148,14 +153,14 @@ function interface_files_views_default_views() {
     'interface_files' => 'interface_files',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Level 1 Category (field_int_level1) */
+  /* Filter criterion: Content: Domain (field_int_level1) */
   $handler->display->display_options['filters']['field_int_level1_tid']['id'] = 'field_int_level1_tid';
   $handler->display->display_options['filters']['field_int_level1_tid']['table'] = 'field_data_field_int_level1';
   $handler->display->display_options['filters']['field_int_level1_tid']['field'] = 'field_int_level1_tid';
   $handler->display->display_options['filters']['field_int_level1_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_int_level1_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_int_level1_tid']['expose']['operator_id'] = 'field_int_level1_tid_op';
-  $handler->display->display_options['filters']['field_int_level1_tid']['expose']['label'] = 'Level 1 Category';
+  $handler->display->display_options['filters']['field_int_level1_tid']['expose']['label'] = 'Domain';
   $handler->display->display_options['filters']['field_int_level1_tid']['expose']['operator'] = 'field_int_level1_tid_op';
   $handler->display->display_options['filters']['field_int_level1_tid']['expose']['identifier'] = 'field_int_level1_tid';
   $handler->display->display_options['filters']['field_int_level1_tid']['expose']['remember_roles'] = array(
@@ -210,17 +215,18 @@ function interface_files_views_default_views() {
     52 => 0,
     53 => 0,
     54 => 0,
+    55 => 0,
   );
   $handler->display->display_options['filters']['field_int_level1_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_int_level1_tid']['vocabulary'] = 'interfaces_doc_level_1';
-  /* Filter criterion: Content: Level 2 Category (field_int_level2) */
+  /* Filter criterion: Content: Type (field_int_level2) */
   $handler->display->display_options['filters']['field_int_level2_tid']['id'] = 'field_int_level2_tid';
   $handler->display->display_options['filters']['field_int_level2_tid']['table'] = 'field_data_field_int_level2';
   $handler->display->display_options['filters']['field_int_level2_tid']['field'] = 'field_int_level2_tid';
   $handler->display->display_options['filters']['field_int_level2_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_int_level2_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_int_level2_tid']['expose']['operator_id'] = 'field_int_level2_tid_op';
-  $handler->display->display_options['filters']['field_int_level2_tid']['expose']['label'] = 'Level 2';
+  $handler->display->display_options['filters']['field_int_level2_tid']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['field_int_level2_tid']['expose']['operator'] = 'field_int_level2_tid_op';
   $handler->display->display_options['filters']['field_int_level2_tid']['expose']['identifier'] = 'field_int_level2_tid';
   $handler->display->display_options['filters']['field_int_level2_tid']['expose']['remember_roles'] = array(
@@ -275,17 +281,18 @@ function interface_files_views_default_views() {
     52 => 0,
     53 => 0,
     54 => 0,
+    55 => 0,
   );
   $handler->display->display_options['filters']['field_int_level2_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_int_level2_tid']['vocabulary'] = 'interface_doc_level_2';
-  /* Filter criterion: Content: Level 3 Category (field_int_level3) */
+  /* Filter criterion: Content: Category (field_int_level3) */
   $handler->display->display_options['filters']['field_int_level3_tid']['id'] = 'field_int_level3_tid';
   $handler->display->display_options['filters']['field_int_level3_tid']['table'] = 'field_data_field_int_level3';
   $handler->display->display_options['filters']['field_int_level3_tid']['field'] = 'field_int_level3_tid';
   $handler->display->display_options['filters']['field_int_level3_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_int_level3_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_int_level3_tid']['expose']['operator_id'] = 'field_int_level3_tid_op';
-  $handler->display->display_options['filters']['field_int_level3_tid']['expose']['label'] = 'Level 3';
+  $handler->display->display_options['filters']['field_int_level3_tid']['expose']['label'] = 'Category';
   $handler->display->display_options['filters']['field_int_level3_tid']['expose']['operator'] = 'field_int_level3_tid_op';
   $handler->display->display_options['filters']['field_int_level3_tid']['expose']['identifier'] = 'field_int_level3_tid';
   $handler->display->display_options['filters']['field_int_level3_tid']['expose']['remember_roles'] = array(
@@ -340,6 +347,7 @@ function interface_files_views_default_views() {
     52 => 0,
     53 => 0,
     54 => 0,
+    55 => 0,
   );
   $handler->display->display_options['filters']['field_int_level3_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_int_level3_tid']['vocabulary'] = 'interfaces_doc_level_3';
